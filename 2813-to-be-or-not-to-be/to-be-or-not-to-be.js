@@ -4,31 +4,23 @@
  */
 var expect = function(val) {
     return {
-    toBe: function(otherVal){
-        if (val===otherVal) return true;
-        else throw new Error ("Not Equal");
-    },
-    notToBe : function(otherVal){
-     
-        if (val!==otherVal) return true;
-      
-        
-       else throw new Error('Equal')
-    }
+        toBe: function(n) {
+            if (val === n) return true;
+            throw new Error("Not Equal");
+        },
+        notToBe: function(n) {
+            if (val !== n) return true;
+            throw new Error("Equal");
+        }
     };
 };
 
 
-function test (func) {
-    try {
-        return {value : func()}
-    }
-    catch(err){
-        return {error : err.message}
-    }
+
+ expect(5).toBe(5); // true
+ try {
+    console.log(expect(5).notToBe(5));
+} catch (e) {
+    console.log(e.message);
 }
 
-
- console.log(test(()=>expect(5).toBe(5))); // true
-  console.log(test(()=>expect(5).notToBe(5))); // throws "Equal"
- 
